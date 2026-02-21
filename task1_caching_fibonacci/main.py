@@ -3,7 +3,7 @@ def caching_fibonacci():
     cache = {}
     
     def fibonacci(n):
-        if n <= 0:
+        if n <= 0: # перевірка на "дно" рекурсії (0, 1)
             return 0
         elif n == 1:
             return 1
