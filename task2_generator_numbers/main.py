@@ -4,13 +4,22 @@
 # Також потрібно реалізувати функцію sum_profit, яка буде використовувати generator_numbers для 
 # підсумовування цих чисел і розрахунку загального прибутку.
 
-from import Callable
+from typing import Callable
+import re
+
+def sum_profit(text: str, func: Callable) -> float:
+    return sum(generator_numbers(text)) # тут автоматом рахую суму, використовуючи ітератор
 
 def generator_numbers(text: str):
+        # Беру цикл з Regex (List Comprehension тут не підійде, будемо повертати по одному числу, а не списком)  
+        # для виокремлення чисел через yield.
+        # В умові зазначено про викоремлення чисел пробілами, проте я додав кому, на всяк випадок 
+        # (але треба буде переглянути ситуацію, якщо дійсні числа матимуть кому як роздільник, а не крапку)  
+    for n in re.split(r'[\s,]+', text):
+        if re.match(r'[+-]?\d+\.?\d*$', n):
+            yield float(n)
 
-def sum_profit(text: str, func: Callable):
-
-
+    
 text = "Загальний дохід працівника складається з декількох частин: 1000.01 як основний дохід, " \
 "доповнений додатковими надходженнями 27.45 і 324.00 доларів."
 total_income = sum_profit(text, generator_numbers)
