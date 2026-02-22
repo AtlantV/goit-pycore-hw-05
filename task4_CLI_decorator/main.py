@@ -61,7 +61,7 @@ def all(contacts):
 # та повернення користувачеві відповіді від функції - handler-а.
 def main():
     contacts = {}
-    print("Welcome to the assistant bot!\nEnter a command (for username and phone):\n- add\n- change\n- user\n- all\nor 'exit'/'close' for stop:")
+    print("Welcome to the assistant bot!\nEnter a command (for username and phone):\n- add\n- change\n- phone\n- all\nor 'exit'/'close' for stop:")
     while True:
         user_input = input("-> ")
         command, *args = parse_input(user_input)
@@ -75,7 +75,7 @@ def main():
             print(add_contact(args, contacts))
         elif command == "change":
             print(change_contact(args, contacts))
-        elif command == "user":
+        elif command == "phone":
             print(phone_username(args, contacts))
         elif command == "all":
             print(all(contacts))
